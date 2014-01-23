@@ -1,0 +1,10 @@
+{
+    "name": "nodecopter",
+    "version": "0.0.1",
+    "description": "hashtag for microsite",
+    "main": "server.js",
+    "dependencies": {
+        "ar-drone": "*",
+        "twit": "*"
+    }
+}
