@@ -11,7 +11,7 @@ var T = new Twit({
 });
 
 
-var client = arDrone.createClient();
+var client = arDrone.createClient({'ip':'192.168.43.99'});
 client.disableEmergency();
 
 console.log('Connecting png stream ...');
@@ -67,11 +67,12 @@ function do_action(str) {
 
 console.log('streaming from twitter...');
 stream.on('tweet', function (tweet) {
-
-    var msg = tweet.text.split(" ").slice(1).join(" ");
-    console.log("got msg from twitter:" + msg + ":");
-    do_action(msg);
-
+    if(['18124258','108707879','27433411','50641753'].indexOf(tweet.user.id_str) > -1){
+        var qArray = tweet.text.split(' ')
+        var msg = qArray[qArray.indexOf('Drone') + 1]
+        console.log(tweet.user.screen_name  + ' send ' + msg);
+        do_action(msg);
+    }
 });
 
 server.listen(8080, function () {
